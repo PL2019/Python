@@ -5,7 +5,7 @@ import pandas as pd
 API_KEY = 'a43aade87cee5978c43c0cf0f574dba7'
 BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
-st.title("Weather Data App")
+st.title("Retrieve temp value via openWeathermap api")
 
 uploaded_file = st.file_uploader("Upload a CSV file with locations", type=["csv"])
 if uploaded_file:
