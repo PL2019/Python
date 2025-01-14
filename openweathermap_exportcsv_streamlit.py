@@ -19,9 +19,15 @@ if uploaded_file:
             response.raise_for_status()
             data = response.json()
             temperature = data["main"]["temp"]
-            results.append({"location": city_name, "temperature": temperature})
+            maxTemp = data["main"]["temp_max"]
+            minTemp = data["main"]["temp_min"]
+            humidity = data["main"]["humidity"]
+            weatherdescription = data["weather"][0]["description"]
+
+
+            results.append({"location": city_name, "temperature": temperature}, "maxTemp": maxTemp, "minTemp": minTemp, "humidity": humidity)
         except requests.exceptions.RequestException:
-            results.append({"location": city_name, "temperature": None})
+            results.append({"location": city_name, "temperature": None}, "maxTemp": None, "minTemp": None, "humidity": None)
 
     output_df = pd.DataFrame(results)
     st.write("Results:", output_df)
