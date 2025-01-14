@@ -5,7 +5,7 @@ import pandas as pd
 API_KEY = 'a43aade87cee5978c43c0cf0f574dba7'
 BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
-st.title("Retrieve temp value via openWeathermap api V1.1")
+st.title("Retrieve temp value via openWeathermap api V1.0")
 
 uploaded_file = st.file_uploader("Upload a CSV file with locations", type=["csv"])
 if uploaded_file:
@@ -25,9 +25,9 @@ if uploaded_file:
             weatherdescription = data["weather"][0]["description"]
 
 
-            results.append({"location": city_name, "temperature": temperature}, "maxTemp": maxTemp, "minTemp": minTemp, "humidity": humidity)
+            results.append({"location": city_name, "temperature": temperature, "maxTemp": maxTemp, "minTemp": minTemp, "humidity": humidity})
         except requests.exceptions.RequestException:
-            results.append({"location": city_name, "temperature": None}, "maxTemp": None, "minTemp": None, "humidity": None)
+            results.append({"location": city_name, "temperature": None, "maxTemp": None, "minTemp": None, "humidity": None})
 
     output_df = pd.DataFrame(results)
     st.write("Results:", output_df)
